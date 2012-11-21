@@ -5,11 +5,13 @@ $LOAD_PATH.unshift File.dirname(__FILE__) + "/../lib"
 require "trello_gateway"
 require "recurello"
 
-public_key = "5b5ef1cf11a70931366b08f8756564a0"
-secret = "InMyTimeOfDying"
-token = "87a4bed23d5a2b2605bb3662718b0e7f42af19c715a061ace1992a019da96ccb"
+# https://trello.com/1/appKey/generate
+public_key = "Trello API Developer key"
+secret = "Some password-y secret here"
 
-# https://trello.com/1/connect?key=PUBLIC_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never
+# https://trello.com/1/connect?key=PUBLIC_KEY_FROM_ABOVE&name=Recurello&response_type=token&scope=read,write,account&expiration=never
+token = "A Trello user's token for access to their Member data here"
+
 trello = TrelloGateway.new
 trello.authorize(public_key, secret, token)
 
