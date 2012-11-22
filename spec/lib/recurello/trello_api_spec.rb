@@ -1,11 +1,11 @@
-require "trello_gateway"
+require "recurello"
 
-describe TrelloGateway do
+describe Recurello::TrelloAPI do
   it { should respond_to(:authorize) }
 
   describe "#member" do
     it "returns a Member class" do
-      trello = TrelloGateway.new
+      trello = Recurello::TrelloAPI.new
       result = trello.member
       result.should be_a(Class)
       result.name.should == "Trello::Member"

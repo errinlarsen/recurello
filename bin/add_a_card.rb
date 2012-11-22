@@ -2,7 +2,7 @@
 require "bundler/setup"
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + "/../lib"
-require "trello_gateway"
+require "trello_api"
 require "recurello"
 
 require "yaml"
@@ -10,7 +10,7 @@ key_file_name = File.join(File.dirname(__FILE__), "..", "trello_keys.yml")
 keys_hash = YAML.load_file(key_file_name)
 keys = Struct.new(*keys_hash.keys.map(&:to_sym)).new(*keys_hash.values)
 
-trello = TrelloGateway.new
+trello = TrelloAPI.new
 trello.authorize(public_key, secret, token)
 
 me = trello.member.find("errinlarsen")

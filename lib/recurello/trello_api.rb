@@ -1,6 +1,6 @@
 require "trello"
 
-class TrelloGateway
+class TrelloAPI
   include Trello
   include Trello::Authorization
 

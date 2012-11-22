@@ -2,9 +2,9 @@ module Recurello
   class CardCreator
     include Recurello::ServerBoundary
 
-    def initialize(gateway)
-      @gateway = gateway
-      gateway.authorize
+    def initialize(api)
+      @api = api
+      api.authorize
     end
   end
 end

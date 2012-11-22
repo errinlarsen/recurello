@@ -1,7 +1,7 @@
 require "recurello"
 
 describe Recurello::CardCreator do
-  it "authorizes a TrelloGateway object" do
+  it "authorizes a Recurello::TrelloAPI object" do
     trello_gateway = double()
     trello_gateway.should_receive(:authorize)
 
