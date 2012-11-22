@@ -2,16 +2,12 @@
 require "bundler/setup"
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + "/../lib"
-require "trello_api"
 require "recurello"
 
-require "yaml"
 key_file_name = File.join(File.dirname(__FILE__), "..", "trello_keys.yml")
-keys_hash = YAML.load_file(key_file_name)
-keys = Struct.new(*keys_hash.keys.map(&:to_sym)).new(*keys_hash.values)
+keys = Recurello::TrelloAPI::Keys.new(File.open(key_file_name, "r"))
 
-trello = Recurello::TrelloAPI.new
-trello.authorize(public, secret, token)
+trello = Recurello::TrelloAPI.new(keys)
 
 me = trello.member.find("errinlarsen")
 boards = me.boards
