@@ -4,16 +4,21 @@ require "bundler/setup"
 $LOAD_PATH.unshift File.dirname(__FILE__) + "/../lib"
 require "recurello"
 
+card = Recurello::Card.new(
+  member_name:  "errinlarsen",
+  board_name:   "Todo",
+  list_name:    "Next",
+  name:         "Test card #1",
+  desc:         "This is it!"
+)
+
 keys = Recurello::TrelloAPI::Keys.new(File.open("trello_keys.yml", "r"))
-trello = Recurello::TrelloAPI.new(keys)
+trello_api = Recurello::TrelloAPI.new(keys)
 
-options = {
-  member: "errinlarsen",
-  board:  "Todo",
-  list:   "Next",
-  name:   "Test card #1",
-  desc:   "This is it!"
-}
+list_finder = Recurello::ListFinder.new(trello_api)
+card.list_id = list_finder.find_list_id_from_card(card)
 
-new_card = trello.create_card(options)
+card_creator = Recurello::CardCreator.new(trello_api)
+new_card = card_creator.create(card)
+
 puts new_card.inspect
