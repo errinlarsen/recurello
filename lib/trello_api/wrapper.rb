@@ -12,7 +12,7 @@ module TrelloAPI
       @keys = TrelloAPI::Keys.new(key_file)
     end
 
-    def authorize
+    def setup_credentials
       Trello::Authorization.const_set(:AuthPolicy, OAuthPolicy)
 
       credential = OAuthCredential.new(keys.public, keys.secret)

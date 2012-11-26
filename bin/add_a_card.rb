@@ -14,7 +14,7 @@ card = Recurello::Card.new(
 )
 
 trello_api = TrelloAPI::Wrapper.new(File.open("trello_keys.yml", "r"))
-trello_api.authorize
+trello_api.setup_credentials
 
 list_finder = Recurello::ListFinder.new(trello_api)
 card.list_id = list_finder.find_list_id_from_card(card)
