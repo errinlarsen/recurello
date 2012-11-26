@@ -3,6 +3,7 @@ require "bundler/setup"
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + "/../lib"
 require "recurello"
+require "trello_api"
 
 card = Recurello::Card.new(
   member_name:  "errinlarsen",
@@ -12,8 +13,8 @@ card = Recurello::Card.new(
   desc:         "This is it!"
 )
 
-keys = Recurello::TrelloAPI::Keys.new(File.open("trello_keys.yml", "r"))
-trello_api = Recurello::TrelloAPI.new(keys)
+trello_api = TrelloAPI::Wrapper.new(File.open("trello_keys.yml", "r"))
+trello_api.authorize
 
 list_finder = Recurello::ListFinder.new(trello_api)
 card.list_id = list_finder.find_list_id_from_card(card)
