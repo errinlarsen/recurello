@@ -1,3 +1,5 @@
+require "yaml"
+
 module TrelloAPI
   class Keys
     attr_reader :public, :secret, :token
