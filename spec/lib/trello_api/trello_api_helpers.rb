@@ -1,13 +1,5 @@
 module TrelloAPIHelpers
-  def trello_api
-    return Recurello::TrelloAPI.new(trello_api_keys)
-  end
-
-  def trello_api_keys
-    return Recurello::TrelloAPI::Keys.new(test_yml_file)
-  end
-
-  def test_yml_file
+  def fake_key_file
     return StringIO.new <<trello_keys_yml
 ---
 public_key: "Some public key"

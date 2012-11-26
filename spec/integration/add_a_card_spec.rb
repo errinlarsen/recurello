@@ -1,6 +1,11 @@
 require "recurello"
 require "trello_api"
 
+require_relative "../lib/trello_api/trello_api_helpers"
+RSpec.configure do |config|
+  config.include TrelloAPIHelpers
+end
+
 describe "Adding a Card to a Trello Board's List", :needs => :trello_api do
   it "creates a Card on the Card's Board in the Card's List" do
     card = Recurello::Card.new(
@@ -34,14 +39,5 @@ describe "Adding a Card to a Trello Board's List", :needs => :trello_api do
 
     card_creator = Recurello::CardCreator.new(trello_api)
     card_creator.create(card)
-  end
-
-  def fake_key_file
-    return StringIO.new <<fake_file
----
-public_key: "Some public key"
-oauth_secret: "Some secret"
-user_token: "Some token"
-fake_file
   end
 end

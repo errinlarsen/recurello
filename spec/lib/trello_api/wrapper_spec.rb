@@ -1,16 +1,12 @@
 require "trello_api"
 
+require_relative "./trello_api_helpers"
+RSpec.configure do |config|
+  config.include TrelloAPIHelpers
+end
+
 describe TrelloAPI::Wrapper do
   it "instantiates a TrelloAPI::Keys object" do
-    TrelloAPI::Wrapper.new(test_yml_file).keys.should be_a(TrelloAPI::Keys)
-  end
-
-  def test_yml_file
-    return StringIO.new <<fake_file
----
-public_key: "Some public key"
-oauth_secret: "Some secret"
-user_token: "Some token"
-fake_file
+    TrelloAPI::Wrapper.new(fake_key_file).keys.should be_a(TrelloAPI::Keys)
   end
 end
